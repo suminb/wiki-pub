@@ -21,25 +21,25 @@ load of documentations and mailing lists like a detective chasing after a crime
 suspect.
 
 This process inheritently gives us great opportunities to expand our horizon,
-discovering alternatives of our current choices, less-known features of a
-particular technology, and other interesting stuff. Over time, we tend to
-forget what we've learned in the process, especially they are irralavant to
-the problem at hand.
+discovering alternatives of our current technical decisions, less-known
+features of a particular technology, and other interesting stuff. Over time,
+we tend to forget what we've learned in the process, especially when they are
+irralavant to the problem at hand.
 
 Even if we are dealing with relavant materials, it is difficult to remember
 all the gory details like parameter names, option names in a configuration
-file, and so on and so forth. This brings us back to where we started. We
-find ourselves in a situation where we dig into the matters that we have seen
-at some point in the past.
+file, environment variables, and so on and so forth. This brings us back to
+where we started. We find ourselves in a situation where we dig into the
+matters that we have seen at some point in the past.
 
-What if we took a note about our findings? What if we at least saved the URLs
-of the materials we found with some keywords or perhaps with a brief
+What if we took some note about our findings? What if we at least saved the
+URLs of the materials we found with some keywords or perhaps with a brief
 description? We could have saved a lot of time for ourselves. Or, even
-better, we could save someone else's time and effort. The would could have
-been a better place.
+better, we could have saved someone else's time and effort. The would could
+have been a better place.
 
 This project has started in an attempt to salvage some of those wasted
-research hours.
+research hours by turning them into public knowledge.
 
 .. toctree::
    :maxdepth: 1
