@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python" href="python.html" />
+    <link rel="prev" title="Git" href="git.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -46,7 +48,7 @@
           
 
           
-            <a href="contents.html" class="icon icon-home"> SB Public Wiki
+            <a href="index.html" class="icon icon-home"> SB Public Wiki
           
 
           
@@ -76,19 +78,23 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">PostgreSQL</a><ul>
-<li><a class="reference internal" href="#tips-tricks">Tips &amp; Tricks</a><ul>
-<li><a class="reference internal" href="#show-timing">Show timing</a></li>
-<li><a class="reference internal" href="#show-tables-containing-keyword">Show tables containing <code class="docutils literal notranslate"><span class="pre">&lt;keyword&gt;</span></code></a></li>
-<li><a class="reference internal" href="#show-columns-containing-keyword">Show columns containing <code class="docutils literal notranslate"><span class="pre">&lt;keyword&gt;</span></code></a></li>
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">Git</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PostgreSQL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tips-tricks">Tips &amp; Tricks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#show-timing">Show timing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-tables-containing-keyword">Show tables containing <code class="docutils literal notranslate"><span class="pre">&lt;keyword&gt;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-columns-containing-keyword">Show columns containing <code class="docutils literal notranslate"><span class="pre">&lt;keyword&gt;</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sonarqube.html">SonarQube</a></li>
 </ul>
-</div>
+
             
           
         </div>
@@ -101,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="contents.html">SB Public Wiki</a>
+          <a href="index.html">SB Public Wiki</a>
         
       </nav>
 
@@ -130,7 +136,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="contents.html">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>PostgreSQL</li>
     
@@ -161,21 +167,21 @@ richness of features.</p>
 <h2>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="show-timing">
 <h3>Show timing<a class="headerlink" href="#show-timing" title="Permalink to this headline">¶</a></h3>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=&gt;</span> \<span class="n">timing</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=&gt;</span> \<span class="n">timing</span>
 <span class="n">Timing</span> <span class="ow">is</span> <span class="n">on</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="show-tables-containing-keyword">
 <h3>Show tables containing <code class="docutils literal notranslate"><span class="pre">&lt;keyword&gt;</span></code><a class="headerlink" href="#show-tables-containing-keyword" title="Permalink to this headline">¶</a></h3>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">information_schema</span><span class="o">.</span><span class="n">tables</span> <span class="n">WHERE</span> <span class="n">column_name</span> <span class="n">LIKE</span> <span class="s1">&#39;%&lt;keyword&gt;%&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">information_schema</span><span class="o">.</span><span class="n">tables</span> <span class="n">WHERE</span> <span class="n">column_name</span> <span class="n">LIKE</span> <span class="s1">&#39;%&lt;keyword&gt;%&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="show-columns-containing-keyword">
 <h3>Show columns containing <code class="docutils literal notranslate"><span class="pre">&lt;keyword&gt;</span></code><a class="headerlink" href="#show-columns-containing-keyword" title="Permalink to this headline">¶</a></h3>
 <p>NOTE: There are a large number of columns.</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">table_catalog</span><span class="p">,</span> <span class="n">table_schema</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">column_name</span> <span class="n">FROM</span> <span class="n">information_schema</span><span class="o">.</span><span class="n">columns</span> <span class="n">WHERE</span> <span class="n">column_name</span> <span class="n">LIKE</span> <span class="s1">&#39;%&lt;keyword&gt;%&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">table_catalog</span><span class="p">,</span> <span class="n">table_schema</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">column_name</span> <span class="n">FROM</span> <span class="n">information_schema</span><span class="o">.</span><span class="n">columns</span> <span class="n">WHERE</span> <span class="n">column_name</span> <span class="n">LIKE</span> <span class="s1">&#39;%&lt;keyword&gt;%&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -187,6 +193,15 @@ richness of features.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="python.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="git.html" class="btn btn-neutral" title="Git" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
