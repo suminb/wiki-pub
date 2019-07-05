@@ -32,7 +32,7 @@ file, environment variables, and so on and so forth. This brings us back to
 where we started. We find ourselves in a situation where we dig into the
 matters that we have seen at some point in the past.
 
-What if we took some note about our findings? What if we at least saved the
+What if we took some notes about our findings? What if we at least saved the
 URLs of the materials we found with some keywords or perhaps with a brief
 description? We could have saved a lot of time for ourselves. Or, even
 better, we could have saved someone else's time and effort. The would could
