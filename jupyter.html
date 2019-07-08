@@ -86,9 +86,18 @@
 <li class="toctree-l1"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradle.html">Gradle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intellij.html">IntelliJ</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Jupyter Notebook</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#turn-off-auto-bracket">Turn off auto-bracket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pip">PIP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tips-tricks">Tips &amp; Tricks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#turn-off-auto-bracket">Turn off auto-bracket</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="postgresql.html">PostgreSQL</a></li>
@@ -162,12 +171,80 @@
             
   <div class="section" id="jupyter-notebook">
 <h1>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>There are multiple options available when it comes to Installation, but we
+will introduce two of them in this article.</p>
+<div class="section" id="pip">
+<h3>PIP<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyter</span>
+</pre></div>
+</div>
+<p>Once <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> package is installed, one may run the notebook server as
+follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
+</pre></div>
+</div>
+<p>Once the notebook is up and running, it can be accessed via
+<a class="reference external" href="http://localhost:8888">http://localhost:8888</a>.</p>
+</div>
+<div class="section" id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
+<p>If installing <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> package via <code class="docutils literal notranslate"><span class="pre">pip</span></code> command is not a viable option,
+a pre-built Docker image could be a good alternative.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="n">jupyter</span><span class="o">/</span><span class="n">scipy</span><span class="o">-</span><span class="n">notebook</span>
+</pre></div>
+</div>
+<p>However, we may want to preserve your notebook files when the server is
+terminated. In such cases, we want to mount your local directory to the
+Docker instance. Suppose we have <code class="docutils literal notranslate"><span class="pre">$HOME/jupyter</span></code> directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> \
+    <span class="o">--</span><span class="n">name</span> <span class="n">jupyter</span> \
+    <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> \
+    <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;$PWD/jupyter&quot;</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">jovyan</span><span class="o">/</span><span class="n">work</span> \
+    <span class="n">jupyter</span><span class="o">/</span><span class="n">scipy</span><span class="o">-</span><span class="n">notebook</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">jupyter/scipy-notebook</span></code> image is locally unavailable, Docker will
+automatically fetch it from the hub.</p>
+<p>Once the Docker container is running the following log messages (or something
+similar) will be visible. We will need the <code class="docutils literal notranslate"><span class="pre">token</span></code> value for authentication.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>To access the notebook, open this file in a browser:
+    file:///home/jovyan/.local/share/jupyter/runtime/nbserver-8-open.html
+Or copy and paste one of these URLs:
+    http://(3c35b924b646 or 127.0.0.1):8888/?token=061d7c374a685b628beb12b4ad0381444955826f6348d622
+</pre></div>
+</div>
+<p>If Docker container is running as a daemon (no console output), we can still
+check the log as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker logs jupyter
+Executing the command: jupyter notebook
+[I 07:37:29.301 NotebookApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 07:37:30.336 NotebookApp] JupyterLab extension loaded from /opt/conda/lib/python3.7/site-packages/jupyterlab
+[I 07:37:30.336 NotebookApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 07:37:30.348 NotebookApp] Serving notebooks from local directory: /home/jovyan
+[I 07:37:30.348 NotebookApp] The Jupyter Notebook is running at:
+[I 07:37:30.349 NotebookApp] http://(3c35b924b646 or 127.0.0.1):8888/?token=061d7c374a685b628beb12b4ad0381444955826f6348d622
+[I 07:37:30.350 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 07:37:30.365 NotebookApp]
+
+    To access the notebook, open this file in a browser:
+        file:///home/jovyan/.local/share/jupyter/runtime/nbserver-8-open.html
+    Or copy and paste one of these URLs:
+        http://(3c35b924b646 or 127.0.0.1):8888/?token=061d7c374a685b628beb12b4ad0381444955826f6348d622
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tips-tricks">
+<h2>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="turn-off-auto-bracket">
-<h2>Turn off auto-bracket<a class="headerlink" href="#turn-off-auto-bracket" title="Permalink to this headline">¶</a></h2>
+<h3>Turn off auto-bracket<a class="headerlink" href="#turn-off-auto-bracket" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">notebook.services.config</span> <span class="k">import</span> <span class="n">ConfigManager</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">ConfigManager</span><span class="p">()</span>
 <span class="n">c</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;CodeCell&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cm_config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;autoCloseBrackets&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}}})</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>

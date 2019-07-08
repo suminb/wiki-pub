@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="SonarQube" href="sonarqube.html" />
+    <link rel="next" title="Security" href="security.html" />
     <link rel="prev" title="PostgreSQL" href="postgresql.html" /> 
 </head>
 
@@ -86,11 +86,16 @@
 <li class="toctree-l1"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradle.html">Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intellij.html">IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter.html">Jupyter Notebook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgresql.html">PostgreSQL</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#list-comprehension">List Comprehension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overriding-global-functions">Overriding Global Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sonarqube.html">SonarQube</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spark.html">Apache Spark</a></li>
 </ul>
@@ -165,6 +170,32 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="overriding-global-functions">
+<h2>Overriding Global Functions<a class="headerlink" href="#overriding-global-functions" title="Permalink to this headline">¶</a></h2>
+<p>In Python, everything can be changed in run-time. Even built-in functions
+like <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Suppose we override <code class="docutils literal notranslate"><span class="pre">print()</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Then we no longer be able to use the built-in function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; print(&#39;Hello World!&#39;)
+Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: &#39;NoneType&#39; object is not callable
+</pre></div>
+</div>
+<p>The most tempting solution to this is probably re-starting the interpreter
+(or whatever runtime we are on). Another way would be delete the global
+variable <code class="docutils literal notranslate"><span class="pre">print</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="nb">globals</span><span class="p">()[</span><span class="s1">&#39;print&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Then our <code class="docutils literal notranslate"><span class="pre">print()</span></code> function is back alive.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<span class="go">Hello World!</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -175,7 +206,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sonarqube.html" class="btn btn-neutral float-right" title="SonarQube" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="postgresql.html" class="btn btn-neutral float-left" title="PostgreSQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
