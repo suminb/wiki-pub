@@ -19,7 +19,7 @@ like ``print()``. Suppose we override ``print()`` as follows:
 
     print = None
 
-Then we no longer be able to use the built-in function.
+Then we are no longer able to use the built-in function.
 
 .. code::
 
