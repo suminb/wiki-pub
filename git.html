@@ -85,7 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="cassandra.html">Apache Cassandra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Git</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#batch-amendment">Batch Amendment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unicode-in-git-status">Unicode In Git Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shallow-clone">Shallow Clone</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="gradle.html">Gradle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intellij.html">IntelliJ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter.html">Jupyter Notebook</a></li>
@@ -160,16 +165,44 @@
             
   <div class="section" id="git">
 <h1>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="batch-amendment">
+<h2>Batch Amendment<a class="headerlink" href="#batch-amendment" title="Permalink to this headline">¶</a></h2>
 <p>Overwrite author/committer name/email for all changesets.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="nb">filter</span><span class="o">-</span><span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="o">--</span><span class="n">env</span><span class="o">-</span><span class="nb">filter</span> \
 <span class="s2">&quot;GIT_AUTHOR_NAME=&#39;Author Name&#39;; GIT_AUTHOR_EMAIL=&#39;author@gmail.com&#39;; </span><span class="se">\</span>
 <span class="s2">GIT_COMMITTER_NAME=&#39;Committer Name&#39;; GIT_COMMITTER_EMAIL=&#39;committer@gmail.com&#39;;&quot;</span> <span class="n">HEAD</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="unicode-in-git-status">
+<h2>Unicode In Git Status<a class="headerlink" href="#unicode-in-git-status" title="Permalink to this headline">¶</a></h2>
 <p>Display unicode characters when git status command is issued. Refer this page
 for more details.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="o">.</span><span class="n">quotePath</span> <span class="n">false</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="shallow-clone">
+<h2>Shallow Clone<a class="headerlink" href="#shallow-clone" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes it takes a long time to clone a repository when it is huge. In such
+cases, it is possible to limit the <code class="docutils literal notranslate"><span class="pre">depth</span></code> so that it only clones the
+recent changesets. This significantly reduces the time it takes to clone the
+repository. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span><span class="o">=</span><span class="mi">50</span>
+</pre></div>
+</div>
+<p>This command will clone recent 50 commits as stated in <code class="docutils literal notranslate"><span class="pre">git</span></code> manual:</p>
+<blockquote>
+<div><p>Create a shallow clone with a history truncated to the specified number
+of commits. Implies <code class="docutils literal notranslate"><span class="pre">--single-branch</span></code> unless <code class="docutils literal notranslate"><span class="pre">--no-single-branch</span></code> is
+given to fetch the histories near the tips of all branches. If you want
+to clone submodules shallowly, also pass <code class="docutils literal notranslate"><span class="pre">--shallow-submodules</span></code>.</p>
+</div></blockquote>
+<p>Once cloned, one may wish to get the full history of the repository. Then one
+may run the following command to retrieve the full commit history.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">unshallow</span>
+</pre></div>
+</div>
 </div>
 </div>
 
